@@ -98,6 +98,11 @@ export default new Router({
       name: 'rule',
       component: () => import( '@/views/dataManage/rule/rule.vue')
     },
+    {
+      path: '/gaojing',
+      name: 'gaojing',
+      component: () => import( '@/views/table/table.vue')
+    },
 
   ]
 })

@@ -1,18 +1,7 @@
 <template>
   <v-app id="inspire" light>
-
-    <v-navigation-drawer
-      v-model="drawerRight"
-      fixed
-      right
-      clipped
-      app
-    >
-      右侧栏
-    </v-navigation-drawer>
-
     <v-toolbar
-      color="light"
+      
       fixed
       app
       clipped-right
@@ -21,7 +10,7 @@
       <v-toolbar-title>菜单</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title>admin</v-toolbar-title>
-      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="showRight"></v-toolbar-side-icon>
     </v-toolbar>
 
 
@@ -31,9 +20,8 @@
       fixed
       app
       class="light"
-      
     >
-      <v-toolbar flat class="light"> 
+      <v-toolbar flat class="light" > 
           <v-list>
             <v-list-tile>
               <v-list-tile-title class="title" >
@@ -45,7 +33,7 @@
 
       <v-divider></v-divider>
 
-      <v-list dense class="pt-0" v-for="(item, index) in menuList" :key="index">
+      <v-list dense class="pt-0 bgc" v-for="(item, index) in menuList" :key="index" >
         <v-list-tile v-if="!item.children" :to=item.path>
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
@@ -69,31 +57,20 @@
               <v-list-tile-avatar>
                 <v-icon>{{items.icon}}</v-icon>
               </v-list-tile-avatar>
-              <v-list-tile-title class='font-weight-bold'>
-                 {{items.title}}
-              </v-list-tile-title >
+              <v-list-tile-content >
+                <v-list-tile-title class='font-weight-bold'>{{items.title}}</v-list-tile-title>
+              </v-list-tile-content >
           </v-list-tile>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
-
-
     <v-content>
         <router-view></router-view>
     </v-content>
-
-
-
-    <v-navigation-drawer
-      v-model="right"
-      right
-      temporary
-      fixed
-    ></v-navigation-drawer>
     <v-footer color="blue-grey" class="white--text" app>
-      <span>酷泰丰科技</span>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酷泰丰科技</span>
       <v-spacer></v-spacer>
-      <span>&copy; 2019</span>
+      <span>&copy; 2019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </v-footer>
   </v-app>
 </template>
@@ -117,12 +94,12 @@
           {title:'终端提取日志',path:'/terminal/terminalLog',icon:'cloud_upload'}
         ]
        },
-       {
-        title:'设备管理',icon:'memory',
-        children:[
-          {title:'领科设备',path:'/equipment/lingke',icon:'device_hub'},
-        ]
-       },
+      //  {
+      //   title:'设备管理',icon:'memory',
+      //   children:[
+      //     {title:'领科设备',path:'/equipment/lingke',icon:'device_hub'},
+      //   ]
+      //  },
        {
         title:'Simpool管理',icon:'grid_on',
         children:[
@@ -150,12 +127,17 @@
           {title:'质量分计算规则',path:'/dataManage/rule',icon:'build'},
         ]
        },
-       { title:'告警提示',path:'/',icon:'error_outline'},
+       { title:'告警提示',path:'/gaojing',icon:'error_outline'},
        { title:'充值系统',path:'/',icon:'add_circle'}
       ]
     }),
     props: {
       source: String
+    },
+    methods:{
+      showRight(){
+        this.$store.commit('setDrawerRight')
+      }
     }
   }
 </script>
@@ -164,4 +146,5 @@
   padding 0 
 .v-list--dense
   padding-bottom 0  
+// .primary--text
 </style>

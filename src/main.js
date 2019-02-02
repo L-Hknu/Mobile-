@@ -19,7 +19,7 @@ Vue.use(Vuetify, {
     perm_identity:'#33cc99',
     sim_card1:'#66cc99',
     sim_card2:'#ff9966',
-    no_sim:'#ff3300',
+    no_sim:'#cc0001',
     signal_cellular_no_sim:'#999999',
     nav:'#ffffff'
   },
